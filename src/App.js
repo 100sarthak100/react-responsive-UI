@@ -1,24 +1,51 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Sidebar from './components/Sidebar';
+import Home from './components/Task1/Home';
+import Navbar from './components/Navbar';
+import Task2 from './components/Task2/Task2';
 import './App.css';
 
 function App() {
+  const [active, setActive] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/task2">
+          <div id="wrapper" className="wrapper">
+            <Task2
+              active={active}
+              setActive={setActive}
+            />
+            <Navbar
+              active={active}
+              setActive={setActive}
+            />
+            <Sidebar
+              active={active}
+              setActive={setActive}
+            />
+          </div>
+        </Route>
+        <Route path="/">
+          <div id="wrapper" className="wrapper">
+            <Navbar
+              active={active}
+              setActive={setActive}
+            />
+            <Sidebar
+              active={active}
+              setActive={setActive}
+            />
+            <Home
+              active={active}
+              setActive={setActive}
+            />
+          </div>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
